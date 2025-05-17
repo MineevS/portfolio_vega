@@ -1,0 +1,34 @@
+{
+    "name": "vega/portfolio",
+    "description": "this is site a portfolio bk-536",
+    "type": "project",
+    "require": {
+        "doctrine/dbal": "5.0.x-dev",
+        "smarty/smarty": "^5.4",
+        "npm-asset/react": "^19.2"
+    },
+    "autoload": {
+        "psr-4": {
+            "Vega\\Portfolio\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "MineevS",
+            "email": "mineeff20@yandex.ru"
+        }
+    ],
+    "minimum-stability": "dev",
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "https://asset-packagist.org"
+        }
+    ],
+    "scripts": {
+        "serve": "php -S localhost:8000 -t public",
+        "post-install-cmd": [
+            "cp -R vendor/npm-asset/react public/assets/backend/react2"
+          ]
+    }
+}
