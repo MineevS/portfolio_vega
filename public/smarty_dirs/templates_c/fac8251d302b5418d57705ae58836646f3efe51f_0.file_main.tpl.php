@@ -1,4 +1,28 @@
-<!DOCTYPE HTML>
+<?php
+/* Smarty version 5.4.3, created on 2025-05-18 11:09:29
+  from 'file:C:\projects\portfolio_serg\portfolio\public/../src/smarty_dirs/templates/main.tpl' */
+
+/* @var \Smarty\Template $_smarty_tpl */
+if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
+  'version' => '5.4.3',
+  'unifunc' => 'content_682995b92aa005_22986874',
+  'has_nocache_code' => false,
+  'file_dependency' => 
+  array (
+    'fac8251d302b5418d57705ae58836646f3efe51f' => 
+    array (
+      0 => 'C:\\projects\\portfolio_serg\\portfolio\\public/../src/smarty_dirs/templates/main.tpl',
+      1 => 1747555698,
+      2 => 'file',
+    ),
+  ),
+  'includes' => 
+  array (
+  ),
+))) {
+function content_682995b92aa005_22986874 (\Smarty\Template $_smarty_tpl) {
+$_smarty_current_dir = 'C:\\projects\\portfolio_serg\\portfolio\\src\\smarty_dirs\\templates';
+?><!DOCTYPE HTML>
 <html>
 	<head>
 		<meta charset="utf-8">
@@ -6,21 +30,47 @@
 		
 		<title>Портфолио - ВЕГА</title>
 		
-		<link type="image/x-icon" rel="icon" href="{$FCN}">
+		<link type="image/x-icon" rel="icon" href="<?php echo $_smarty_tpl->getValue('FCN');?>
+">
 
-		<link type="text/css" rel="stylesheet" href="{$CSS_TOTAL}">
-		<link type="text/css" rel="stylesheet" href="{$CSS_MAIN}"> 
-		<link type="text/css" rel="stylesheet" href="{$CSS_AOS}">
-		<link type="text/css" rel="stylesheet" href="{$CSS_SELECT2}"/>
+		<link type="text/css" rel="stylesheet" href="<?php echo $_smarty_tpl->getValue('CSS_TOTAL');?>
+">
+		<link type="text/css" rel="stylesheet" href="<?php echo $_smarty_tpl->getValue('CSS_MAIN');?>
+"> 
+		<link type="text/css" rel="stylesheet" href="<?php echo $_smarty_tpl->getValue('CSS_AOS');?>
+">
+		<link type="text/css" rel="stylesheet" href="<?php echo $_smarty_tpl->getValue('CSS_SELECT2');?>
+"/>
 
-		<script type="text/javascript" src="{$SJS}"></script>
-		<script type="module" src="{$JSX}" ></script> 
-		<script type="text/javascript" src="{$JQR}"></script>
-		<script type="text/javascript" src="{$AOS}"></script>
-		<script type="text/javascript" src="{$SELECT2}"></script>
+		<?php echo '<script'; ?>
+ type="text/javascript" src="<?php echo $_smarty_tpl->getValue('SJS');?>
+"><?php echo '</script'; ?>
+>
+		<?php echo '<script'; ?>
+ type="module" src="<?php echo $_smarty_tpl->getValue('JSX');?>
+" ><?php echo '</script'; ?>
+> 
+		<?php echo '<script'; ?>
+ type="text/javascript" src="<?php echo $_smarty_tpl->getValue('JQR');?>
+"><?php echo '</script'; ?>
+>
+		<?php echo '<script'; ?>
+ type="text/javascript" src="<?php echo $_smarty_tpl->getValue('AOS');?>
+"><?php echo '</script'; ?>
+>
+		<?php echo '<script'; ?>
+ type="text/javascript" src="<?php echo $_smarty_tpl->getValue('SELECT2');?>
+"><?php echo '</script'; ?>
+>
 
-		<!--<script type="text/javascript" src="{$JSREACT}"></script>-->
-		<script type="text/javascript" src="{$JSAPP}"></script>
+		<!--<?php echo '<script'; ?>
+ type="text/javascript" src="<?php echo $_smarty_tpl->getValue('JSREACT');?>
+"><?php echo '</script'; ?>
+>-->
+		<?php echo '<script'; ?>
+ type="text/javascript" src="<?php echo $_smarty_tpl->getValue('JSAPP');?>
+"><?php echo '</script'; ?>
+>
 
 		<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 			<!-- For edit button -->
@@ -137,44 +187,56 @@
 	<body>
 		<div class="layout">
 			<header>
-				<a class="logo" href="{$INDEX}">
+				<a class="logo" href="<?php echo $_smarty_tpl->getValue('INDEX');?>
+">
 					<h1 class="font-logo">ПОРТФОЛИО</h1>
 				</a>
 				<div class="menu">
 					<nav class="nav">
 						<ul>
 							<li>
-								<a href="{$PROJECTS}">Проекты</a>
+								<a href="<?php echo $_smarty_tpl->getValue('PROJECTS');?>
+">Проекты</a>
 							</li>
 							<li>
-								<a href="{$TEAMS}">Команды</a>
+								<a href="<?php echo $_smarty_tpl->getValue('TEAMS');?>
+">Команды</a>
 							</li>
 							<li>
-								<a href="{$VACANCIES}">Вакансии</a>
+								<a href="<?php echo $_smarty_tpl->getValue('VACANCIES');?>
+">Вакансии</a>
 							</li>
 						</ul>
 					</nav>
 					<div>
-						{if isset($icon)|default}
+						<?php if ((($tmp = (true && ($_smarty_tpl->hasVariable('icon') && null !== ($_smarty_tpl->getValue('icon') ?? null))) ?? null)===null||$tmp==='' ? '' ?? null : $tmp)) {?>
 							<div class="dropdownProfile">
 							<a href="" class="dropbtnProfile">
-								<img id="profile" class="avatar" src="{$icon}" />
+								<img id="profile" class="avatar" src="<?php echo $_smarty_tpl->getValue('icon');?>
+" />
 							</a>
 								<div class="dropdown-content">
-									<a href="#" onclick="window.location.href='{$PROFILE}'">Мой профиль</a>
-									<a href="#" onclick="logout('{$ACTION}');">Выход</a>
+									<a href="#" onclick="window.location.href='<?php echo $_smarty_tpl->getValue('PROFILE');?>
+'">Мой профиль</a>
+									<a href="#" onclick="logout('<?php echo $_smarty_tpl->getValue('ACTION');?>
+');">Выход</a>
 								</div>
 							</div>
-						{else}
+						<?php } else { ?>
 							<div>
-								<a target="iframe-auth-reg" onclick="create_iframe_authorization_registration();" href="{$HFR}" >Вход</a> <!-- <?php echo AUTH::PATH->value; ?> href="./frames/authorization.html" -->
+								<a target="iframe-auth-reg" onclick="create_iframe_authorization_registration();" href="<?php echo $_smarty_tpl->getValue('HFR');?>
+" >Вход</a> <!-- <?php echo '<?php'; ?>
+ echo AUTH::PATH->value; <?php echo '?>'; ?>
+ href="./frames/authorization.html" -->
 							</div>
-						{/if}
-					</div> 						<!--{date_now}-->
+						<?php }?>
+					</div> 						<!--<?php echo $_smarty_tpl->getSmarty()->getFunctionHandler('date_now')->handle(array(), $_smarty_tpl);?>
+-->
 				</div>
 			</header>
 			<main>
-				{include file="$MAIN"}
+				<?php $_smarty_tpl->renderSubTemplate(((string)$_smarty_tpl->getValue('MAIN')), $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), (int) 0, $_smarty_current_dir);
+?>
 			</main>
 			<footer>
 				<a href="index.html" class="logo d-flex align-items-center">
@@ -190,7 +252,10 @@
 		</div>
 	</body>
 	<!-- script's code -->
-	<script>
+	<?php echo '<script'; ?>
+>
 		AOS.init();
-	</script>
-</html>
+	<?php echo '</script'; ?>
+>
+</html><?php }
+}

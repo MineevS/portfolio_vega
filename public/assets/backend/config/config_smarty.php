@@ -84,11 +84,13 @@
 
 	$smarty->assign("CSS_TOTAL", STYLE::MAIN->value);
 
-	$smarty->assign('SIZE_PAGE_PROJECTS', SIZE_LOAD_PAGE::$PROJECTS);
+	$smarty->assign('SIZE_PAGE_PROJECTS',  SIZE_LOAD_PAGE::$PROJECTS);
 	$smarty->assign('SIZE_PAGE_VACANCIES', SIZE_LOAD_PAGE::$VACANCIES);
-	$smarty->assign('SIZE_PAGE_TEAMS', SIZE_LOAD_PAGE::$TEAMS);
+	$smarty->assign('SIZE_PAGE_TEAMS',     SIZE_LOAD_PAGE::$TEAMS);
 
 	$smarty->assign('template_name_default_img_project', 'default_avatar_project.jpg'); // /assets/frontend/icons/
+	$smarty->assign('template_name_default_img_profile', 'default_avatar_profile.jpg'); 
+	
 	$smarty->assign('page_default', \INDEX::PATH->value); // Страница для перехода при удалении других страниц.
 
 	// $smarty->display("main.tpl");  // выводим обработанный шаблон

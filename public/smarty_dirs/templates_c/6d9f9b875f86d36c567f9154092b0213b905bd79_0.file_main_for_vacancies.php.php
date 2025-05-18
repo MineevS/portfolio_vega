@@ -1,4 +1,28 @@
-<section class="section_1" style="width: 100%;">
+<?php
+/* Smarty version 5.4.3, created on 2025-05-18 11:14:50
+  from 'file:C:\projects\portfolio_serg\portfolio\public/assets/frontend/mains/main_for_vacancies.php' */
+
+/* @var \Smarty\Template $_smarty_tpl */
+if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
+  'version' => '5.4.3',
+  'unifunc' => 'content_682996fad1f9f1_30844755',
+  'has_nocache_code' => false,
+  'file_dependency' => 
+  array (
+    '6d9f9b875f86d36c567f9154092b0213b905bd79' => 
+    array (
+      0 => 'C:\\projects\\portfolio_serg\\portfolio\\public/assets/frontend/mains/main_for_vacancies.php',
+      1 => 1747556088,
+      2 => 'file',
+    ),
+  ),
+  'includes' => 
+  array (
+  ),
+))) {
+function content_682996fad1f9f1_30844755 (\Smarty\Template $_smarty_tpl) {
+$_smarty_current_dir = 'C:\\projects\\portfolio_serg\\portfolio\\public\\assets\\frontend\\mains';
+?><section class="section_1" style="width: 100%;">
     <div class="elems">
         <article style="display: grid; width: 75%; align-self: flex-start;">
             <h1 class="HelveticaProject" style="justify-self: start;">Наши открытые</h1>
@@ -9,7 +33,8 @@
             <div style="display: flex; flex-direction: row; width: 70%; height: 2rem;">
                 <div class="inputDiv">
                     <!-- onblur="hideInputSugToolTip()" -->
-                    <input class="inputSearch" id="inputSearch" oninput="inputSugToolTip('{$ACTION}')">
+                    <input class="inputSearch" id="inputSearch" oninput="inputSugToolTip('<?php echo $_smarty_tpl->getValue('ACTION');?>
+')">
                     </input>
                     <!-- <div class="inputSug">
                         <ul class="inputSugUi" id="inputSugUi">
@@ -38,9 +63,12 @@
                             <path d="M2 10.5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1h-3a.5.5 0 0 1-.5-.5m0-3a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5m0-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5" />
                         </svg></button>
                     <div class="dropdown-content">
-                        <a href="#" onclick="order_sort.call(this, 'new', '{$ACTION}')">Новые</a>
-                        <a href="#" onclick="order_sort.call(this, ('old', '{$ACTION}')">Старые</a>
-                        <a href="#" onclick="order_sort.call(this, ('rel', '{$ACTION}')">Релевантные</a>
+                        <a href="#" onclick="order_sort.call(this, 'new', '<?php echo $_smarty_tpl->getValue('ACTION');?>
+')">Новые</a>
+                        <a href="#" onclick="order_sort.call(this, ('old', '<?php echo $_smarty_tpl->getValue('ACTION');?>
+')">Старые</a>
+                        <a href="#" onclick="order_sort.call(this, ('rel', '<?php echo $_smarty_tpl->getValue('ACTION');?>
+')">Релевантные</a>
                     </div>
                 </div>
             </div>
@@ -53,7 +81,8 @@
                         <path stroke="#858585" stroke-linecap="round" d="M10.698 10.59 14 14m-1.91-7.274c0 3.163-2.483 5.727-5.545 5.727C3.482 12.453 1 9.889 1 6.726 1 3.564 3.482 1 6.545 1c3.062 0 5.544 2.564 5.544 5.726Z"/>
                     </svg>
                 </span>-->
-        <!-- {query_input for="search"}
+        <!-- <?php echo $_smarty_tpl->getSmarty()->getFunctionHandler('query_input')->handle(array('for'=>"search"), $_smarty_tpl);?>
+
                 <div style="position: relative;">
                     <button class="tags round">
                         <svg xmlns="http://www.w3.org/2000/svg" width="15" height="11" fill="none" viewBox="0 0 15 11">
@@ -88,7 +117,8 @@
         </div> -->
         <!--<hr class="hrProject">-->
         <div class="container vacancies-container" style="display: flex;"> <!-- repid in main_for_index-->
-            {query_vacancies select="*" from="$tab_vacancies" orderby="id" limit="$limit_vacancies" offset="0"}
+            <?php echo $_smarty_tpl->getSmarty()->getFunctionHandler('query_vacancies')->handle(array('select'=>"*",'from'=>((string)$_smarty_tpl->getValue('tab_vacancies')),'orderby'=>"id",'limit'=>((string)$_smarty_tpl->getValue('limit_vacancies')),'offset'=>"0"), $_smarty_tpl);?>
+
         </div>
     </div>
     <!--<div style=" height: auto; display: flex; align-items: center; justify-content: end; flex-direction: row; width: 100%; height: 10%; background-color: #EA5657;">
@@ -97,4 +127,5 @@
 			<path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8"></path>
 		</svg>
 	</div>-->
-</section>
+</section><?php }
+}

@@ -262,6 +262,8 @@ function loadProjets(path) {
     query_projects(path);
 }
 
+window.loadProjets = loadProjets; // add 18.05.25
+
 function query_projects(path) {
     $.ajax({
         type: "POST",
@@ -1636,6 +1638,8 @@ function topFunction() {
     var p = document.getElementById('load_project_p');
     p.style.display = "none";
 }
+
+window.topFunction = topFunction; // add 18.05.25
 
 function like(project_id, path) {
     var formData = new FormData();

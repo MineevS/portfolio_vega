@@ -4,6 +4,22 @@ export function getCurrentPage(){
 
 window.getCurrentPage = getCurrentPage;
 
+export class CustomLoadData extends HTMLElement {
+	connectedCallback() {
+
+		var action     = (this.hasAttribute('action')      ? this.getAttribute('action')      : '');
+		
+		this.innerHTML = `
+		    <button class="loadB" id="load_project_button" type="submit" onclick="loadProjets('${action}');">
+	            <svg id="load_project_svg" width="30" height="30" >
+                    <use xlink:href="#load_scroll"></use>
+	            </svg>
+            </button>
+            <p class="loadP" id="load_project_p">Кажется вы всё посмотрели</p>`;
+	}
+}
+
+customElements.define('cstm-load-data', CustomLoadData);
 
 export class CustomFormVacancy extends HTMLElement {
 	connectedCallback() {
@@ -1027,7 +1043,81 @@ export class CustomButtonAdd extends HTMLElement {
 
 customElements.define('cstm-button-add', CustomButtonAdd);
 
-export class CustomFormProject extends HTMLElement {
+export class CustomForm  extends HTMLElement {
+	 connectedCallback(left_html, right_html) {
+
+		var action     = ( this.hasAttribute('action') ? this.getAttribute('action'): ''); // /assets/frontend/pages/project.php
+		var icon       = ( this.hasAttribute('data-icon') ? this.getAttribute('data-icon') : '');
+		var name       = ( this.hasAttribute('data-name') ? this.getAttribute('data-name') : '');
+
+		 var id         = this.getAttribute('data-id');
+		 var is_right   = (this.hasAttribute('data-is-right') ? this.getAttribute('data-is-right') : '');
+		 var display    = ( is_right ? 'flex':  'grid');
+
+		 var rhtml = '';
+		 if(is_right === "true"){
+			 rhtml += `			
+			 <div class="div-right">
+				<button class="buttonRefHeadline">
+					<input type="hidden" name="id" value="${id}">${name}
+				</button>
+				${right_html}
+			</div>`;
+		 }
+		 
+		return `
+		<form class="formProject" method="POST" action="${action}" style="display: ${display};">
+			<div class="div-left">
+				<button name="id" value="${id}" type="submit" class="image-2">
+					<img src="/assets/frontend/icons/${icon}" alt="Submit">
+				</button>
+				${left_html}
+			</div>
+			${rhtml}
+		</form>`;
+	 }
+}
+export class CustomFormTeam extends CustomForm {
+	connectedCallback() {
+		var id         = (this.hasAttribute('data-id')       ? this.getAttribute('data-id')       : '');
+		var is_right   = (this.hasAttribute('data-is-right') ? this.getAttribute('data-is-right') : '');
+
+		var left_html = '', right_html = '';
+		if(is_right === "true"){
+			var skills        = this.getAttribute('data-skills');
+
+            var skills_html = '';
+
+			if(skills.length > 0){
+				skills_html += `<p>Мои навыки:</p><div class="tgs">`;
+				[...skills.split(',')].forEach(skill => {
+	                skills_html += `<p>#${skill.replace(' ', "_")}</p>`;
+	            });
+				skills_html += '</div>';
+			} else {
+				skills_html += '<p>Навыки отсутствуют</p>';
+			}
+
+			var description = ( this.hasAttribute('data-description') ? this.getAttribute('data-description') : '');
+
+			left_html += ``;
+
+			right_html += `
+				<p class="projectBody">${description}</p>
+				${skills_html}
+				<button class="buttonRef"><input type="hidden" name="id" value="${id}">Подробнее →</button>`;
+		}
+
+		this.setAttribute('data-icon', 'avatars_profiles/' + this.getAttribute('data-icon'));
+		this.setAttribute('action', '/assets/frontend/pages/profile.php');
+		
+		this.innerHTML = super.connectedCallback(left_html, right_html);
+	}
+}
+
+customElements.define('cstm-form-team', CustomFormTeam);
+
+export class CustomFormProject extends CustomForm {
     connectedCallback() {
         var map_status_color = {
             "Завершен" :     {'svg_id': 'completed',      'color': 'green' ,                 'bgcolor': 'rgb(73 176 73 / 0.5)' }, 
@@ -1036,13 +1126,17 @@ export class CustomFormProject extends HTMLElement {
             "В разработке":  {'svg_id': 'in_development', 'color': 'rgba(151, 71, 255, 1)',  'bgcolor': 'rgba(227, 211, 248, 0.8)' },
             "Идёт набор":    {'svg_id': 'recruiting',     'color': 'rgba(51, 102, 255, 1)',  'bgcolor': 'rgba(217, 228, 252, 0.5)' } 
         };
+
+		this.setAttribute('data-icon', 'avatars_projects/' + this.getAttribute('data-icon'));
+		this.setAttribute('action', '/assets/frontend/pages/project.php');
         
-        var id         = this.getAttribute('data-id');
-        var icon       = this.getAttribute('data-icon');
+        var id         = this.getAttribute('data-id'); //
+         
         var status     = this.getAttribute('data-status');
         var count_like = this.getAttribute('data-count-like');
 		var is_like    = ( this.hasAttribute('data-is-like') ? strToBool(this.getAttribute('data-is-like')) : false) ;
-        var is_right   = this.getAttribute('data-is-right');
+        
+		var is_right   = (this.hasAttribute('data-is-right') ? this.getAttribute('data-is-right') : '');
 
         var bgcolor    = '';
         var color      = '';
@@ -1055,9 +1149,8 @@ export class CustomFormProject extends HTMLElement {
         }
 
         var cls = ( count_like > 0 && is_like ? 'like-svg': 'not-like-svg');
-        var display = ( is_right ? 'flex':  'grid');
-
-        var right_html = '';
+        
+        var right_html = '', left_html = '';
         if(is_right === "true"){
             var name        = this.getAttribute('data-name');
             var description = this.getAttribute('data-description');
@@ -1072,56 +1165,45 @@ export class CustomFormProject extends HTMLElement {
             var cnt_feedback     = this.getAttribute('data-cnt-feedback');
             var cnt_participants = this.getAttribute('data-cnt-participants');
 
-            right_html += `
-                <div class="div-right"> 
-                    <button class="buttonRefHeadline">
-                        <input type="hidden" name="id" value="${id}">${name}
-                    </button>
-                    <p class="projectBody" >${description}</p>
-                    <div class="tgs"> 
-                        ${tags_html} 
-                    </div>
-                    <div class="projectLikeComms"> 
-                        <div style="display: flex; flex-direction: row; align-items: center;"> 
-                            <div style="margin-right: 1rem;">
-                                <svg class="${cls}" id="like-${id}"  onclick="like.call(this.nextElementSibling, ${id} , \'${url}\')" >
-                                    <use xlink:href="#heart"></use>
-                                </svg>
-                                <small class="contentProperty" name="likee-${id}">${count_like}</small> 
-                            </div>
-                            <div style="margin-right: 1rem;"> 
-                                <svg class="" width="16" height="16" viewBox="0 0 16 16">
-                                    <use xlink:href="#msg"></use>
-                                </svg>
-                                <small class="contentProperty" name="feedback">${cnt_participants}</small>
-                            </div>
-                            <div>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 16 16">
-                                    <use xlink:href="#user"></use>
-                                </svg>
-                                <small class="contentProperty" name="participants">${cnt_participants}</small>
-                            </div>
-                        </div>
-                        <button class="buttonRef"><input type="hidden" name="id" value="${id}">Подробнее →</button>
-                    </div>
-                </div>`;
-        }
-
-        this.innerHTML = `
-        <form class="formProject" method="POST" action="/assets/frontend/pages/project.php" style="display: ${display};">
-            <div class="div-left">
-                <button name="id" value="${id}" type="submit" class="image-2">
-                    <img src="/assets/frontend/icons/avatars_projects/${icon}" alt="Submit">
-                </button>
-                <div class="statusProject" style="background: ${bgcolor};">
+			left_html = `
+				<div class="statusProject" style="background: ${bgcolor};">
                     <svg class="" width="16" height="16" viewBox="0 0 16 16">
                         <use xlink:href="#${svg_id}"></use>
                     </svg>
                     <p class="projectStatus" style="color: ${color};">${status}</p>
-                </div>
-            </div>
-            ${right_html}
-        </form>`;
+                </div>`;
+
+            right_html += `
+				<p class="projectBody" >${description}</p>
+				<div class="tgs"> 
+					${tags_html} 
+				</div>
+				<div class="projectLikeComms"> 
+					<div style="display: flex; flex-direction: row; align-items: center;"> 
+						<div style="margin-right: 1rem;">
+							<svg class="${cls}" id="like-${id}"  onclick="like.call(this.nextElementSibling, ${id} , \'${url}\')" >
+								<use xlink:href="#heart"></use>
+							</svg>
+							<small class="contentProperty" name="likee-${id}">${count_like}</small> 
+						</div>
+						<div style="margin-right: 1rem;"> 
+							<svg class="" width="16" height="16" viewBox="0 0 16 16">
+								<use xlink:href="#msg"></use>
+							</svg>
+							<small class="contentProperty" name="feedback">${cnt_participants}</small>
+						</div>
+						<div>
+							<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 16 16">
+								<use xlink:href="#user"></use>
+							</svg>
+							<small class="contentProperty" name="participants">${cnt_participants}</small>
+						</div>
+					</div>
+					<button class="buttonRef"><input type="hidden" name="id" value="${id}">Подробнее →</button>
+				</div>`;
+        }
+
+		this.innerHTML = super.connectedCallback(left_html, right_html);
     }
 }
 

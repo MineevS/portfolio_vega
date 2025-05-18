@@ -65,9 +65,6 @@ function psql_query_projects($params, $smarty){
     foreach ($array_data as $data) {
         $tags  = (isset($data['tags']) ? json_decode($data['tags']) : array());
 
-        $html_tags = '';
-        foreach ($tags as $tag) 
-            $html_tags .= '<p>#' . $tag . '</p>';
 
         $tab = \TABS_NAME::LIKE_PROJECT->value;
 
@@ -159,40 +156,23 @@ function psql_query_interests($params, $smarty)
                 </svg>
             </div>
         </button>
-    </form>'; // onclick="window.location.href={$INTERESTS}"
+    </form>'; 
 
     return $html;
 }
 
-function psql_query_stars($params, $smarty)
-{
-
+function psql_query_stars($params, $smarty){
     global $conn;
 
-    /*require_once($_SERVER['DOCUMENT_ROOT'].TOTAL::CDB->value);             //-> [$dbname, $host, $port, $user, $passwd]; -> './config/config_db.php'
-    require_once($_SERVER['DOCUMENT_ROOT'].TOTAL::WDBC->value);             // -> WrapperDataBase(); -> './config/WrapperDataBaseConn.php' 
-
-    $wdbc = new WDBC($dbname, $host, $port, $user, $passwd);
-    */
     $array_data = $conn->createQueryBuilder()
         ->select($params['select'])
         ->from($params['from'])
         ->orderby($params['orderby'])
         ->executeQuery()
     ->fetchAllAssociative();
-
-        // ->exec(); // ->limit  (isset($params['limit']) ? $params['limit'] : '')
-
-    //$status = true;
-
-    // $array_data = $query->executeQuery()->fetchAllAssociative(); //$wdbc->query()->responce(); // $wdbc->query()->responce() // value="<?= $cur_idx
-
     $html = '';
     $deb = array();
     foreach ($array_data as $data) {
-        //$status_block = ( $data["id"] == 2 ? 'block' : 'none'); 
-        // $status_block = ($data["id"] == 2 ? 'visible' : 'hidden'); // // visibility // display: '.$status_block.';
-
         $icon = "someone.svg";
 
         $icon = $conn->createQueryBuilder()
@@ -414,14 +394,21 @@ function psql_query_properties_profile($params, $smarty){
         ->select('*')
         ->from('info_user')
         ->where('id = :id')
-        ->setParameter('id', $_SESSION['id'])
-        ->executeQuery();
+        ->setParameter('id', $_POST['id'])
+    ->executeQuery();
 
     $array_data = $query->fetchAllAssociative();//$wdbc->query()->responce(); // $wdbc->query()->responce() // value="<?= $cur_idx
 
     $html = '';
     foreach ($array_data as $data) {
         switch ($params["for"]) {
+            case 'icon':
+                if (isset($data['icon'])){
+                    $html .= $data['icon'];
+                } else {
+                    $html .= ''; // изображение по умолчанию установится!
+                }
+                break;
             case 'base_properties':
                 $groups = query_groups();
                 $dt = array_column($groups, 'name');
@@ -452,7 +439,8 @@ function psql_query_properties_profile($params, $smarty){
                 break;
             case 'goals':
                 $html .= '<ul>';
-                if (isset($data['goals']))  $goals = json_decode($data['goals'], true);
+                $goals = (isset($data['goals']) ? json_decode($data['goals'], true) : array());
+                // if (isset($data['goals']))  $goals = json_decode($data['goals'], true);
                 $html .= wrapperHtmlLi(...$goals);
                 $html .= '</ul>';
                 break;
@@ -461,9 +449,7 @@ function psql_query_properties_profile($params, $smarty){
                     $refs = json_decode($data['refs'], true);
 
                     foreach ($refs as $reference) {
-                        $url = $reference;
-    
-                        $html .= '<cstm-reference url="'.$url.'"></cstm-reference>';
+                        $html .= '<cstm-reference url="'.$reference.'"></cstm-reference>';
                     }
                 }
                 break;
@@ -486,10 +472,6 @@ function psql_query_properties_profile($params, $smarty){
                         $html .= '<cstm-social-network url="'.$social.'"></cstm-social-network>';
                     }
                 }
-
-                /*$html .= '
-                    <cstm-social-network url="https://vk.com/msa_7"></cstm-social-network>
-                    <cstm-social-network url="https://t.me/token0609"></cstm-social-network>';*/
                 break;
         }
     }
@@ -617,23 +599,11 @@ function query_editor_button($params, $smarty){
     </svg>';
 }
 
-function psql_query_header_page($params, $smarty)
-{ // $params['action'] // \'{$ACTION}\'
-
-    /*$style = '';
-    if(isset($params['style']))  $style = $params['style'];*/
+function psql_query_header_page($params, $smarty){ 
 
     $action = $smarty->getTemplateVars('ACTION');
     $url_templ_img = $smarty->getTemplateVars('template_name_default_img');
-    // $url_img_profile = $smarty->getTemplateVars('icon');
-    // $page = $params['page'];
 
-    /*
-        {query_properties 1_profile for="head"}
-		{query_editor_button}
-    */
-
-    // $page = $smarty->template_resource;
 
     $page = explode('.', end(explode('_', end(explode('/', $smarty->template_resource)))))[0];
 
@@ -643,51 +613,35 @@ function psql_query_header_page($params, $smarty)
 
     $page_default = '';
 
-    // $action = '';
     switch ($page) {
         case 'profile':
-            $params['for'] = 'head';
-            $url_img = $smarty->getTemplateVars('icon');
-            $name    = psql_query_properties_profile($params, $smarty);
-            //$content_html .= query_editor_button($params, $smarty);
+            $params['for'] = 'icon';
+            $url_img = '/assets/frontend/icons/avatars_profiles/'.psql_query_properties_profile($params, $smarty);
 
+            $params['for'] = 'head';
+            $name    = psql_query_properties_profile($params, $smarty);
             if ($smarty->getTemplateVars('access')) {
                 $action = 'action="'.$action.'"';
             }
-
-            /*$svg_border = '
-                <rect width="197.234" height="197.234" x="8.067" y="10.59" fill="url(#a)" stroke="#EA5657" stroke-width="3" rx="98.617"/>
-                <path stroke="#EA5657" stroke-linecap="round" stroke-width="3" d="M103.532 208.216C144.523 215.784 212 179.207 212 116.144c0-78.829-53.604-110.99-108.468-110.99C48.667 5.153 2 44.251 2 109.837s84.504 104.685 130.541 87.658"/>
-                <path stroke="#EA5657" stroke-linecap="round" stroke-width="3" d="M2 109.838C7.045 49.298 33.532 16.505 72.63 2"/>';
-
-            $width = 214;
-            $height = 211;*/
             break;
         case 'project':
-            // {query_propertiesd 1_project for="icon" icon_default="$icon_default"}
             $params_list = array(
                 'for' => "url_icon",
                 'icon_default' => $smarty->getTemplateVars('icon_default')
             );
 
-            //$url_img = $smarty->getTemplateVars('icon');
-
             $url_img = psql_query_properties_project($params_list, $smarty); // Иконка аватара для заголовка
-
-            //{query_properties 1_project for="name" name_default="$name_default"}
             $params_list = array(
                 'for' => "name",
                 'name_default' => $smarty->getTemplateVars('name_default')
             );
             $name = psql_query_properties_project($params_list, $smarty); 
 
-            // $htm_editor_button = '';
             if ($smarty->getTemplateVars('access')) {
                 $action = 'action="'.$action.'"';
 
                 $page_default = $smarty->getTemplateVars('page_default');
             }
-
             break;
         case 'vacancy':
             $params_list = array(
@@ -979,92 +933,59 @@ function psql_query_authors($params, $smarty){
 function psql_query_teams($params, $smarty){
     global $conn;
 
-    /*require_once($_SERVER['DOCUMENT_ROOT'].TOTAL::CDB->value);             //-> [$dbname, $host, $port, $user, $passwd]; -> './config/config_db.php'
-    require_once($_SERVER['DOCUMENT_ROOT'].TOTAL::WDBC->value);             // -> WrapperDataBase(); -> './config/WrapperDataBaseConn.php' 
+    $query = make_query($params, $smarty);
 
-    $wdbc = new WDBC($dbname, $host, $port, $user, $passwd);
-    */
-    /*$status = $wdbc ->query()
-            ->select ($params['select'])
-            ->from   ($params['from'])
-            ->orderby($params['orderby'])
-            ->limit  ($params['limit'])
-        ->exec();*/
+    $array_data = $query->executeQuery()->fetchAllAssociative();
 
-        /*
-            $responce = $conn->createQueryBuilder() // Проверка на `like` по проекту  и текущему `phpsessid`
-            ->select('id')
-            ->from(\TABS_NAME::LIKE_PROJECT->value)
-            ->where('project_id = :id')
-            ->setParameter('id', $data['id'])
-            ->andWhere('phpsessid = :sid')
-            ->setParameter('sid', session_id())
-            ->groupby('id')
-            ->executeQuery()->fetchAllAssociative();
-        */
+    $include_right = true;
+    switch ($for) {
+        case 'profile':
+            $include_right = false;
+            break;
+    }
 
     $status = false;
 
     $html = '';
-    if ($status) {
-        $array_data = $conn->executeQuery()->fetchAllAssociative();; // $wdbc->query()->responce(); // $wdbc->query()->responce() // value="<?= $cur_idx
 
+    foreach ($array_data as $data) {
 
-        /*foreach($array_data as $data){
-                $html = $html.
-                    '<div class="item" style="">
-                    
-                    </div>';
-            }*/
+        $icon   = (isset($data['icon']) ? $data['icon'] : $smarty->getTemplateVars('template_name_default_img_profile'));
 
-        for ($i = 0; $i < 1; $i++) {
-            $html = $html .
-                '<div class="item-of-teams" style="display: block; "> <!-- none / block -->
+        $skills   = (isset($data['skills']) ? json_decode($data['skills']) : array());
+        $skills2  = (isset($skills) ? join(",", $skills) : null);
+        $firstname = (isset($data['firstname']) ? $data['firstname'] : 'Имя');
+        $lastname = (isset($data['lastname']) ? $data['lastname'] : 'Фамилие');
 
-                    </div>';
-        }
+        $description = (isset($data['about']) ? $data['about'] : 'Описание отсутствует');
 
-        return $html;
+        $html .= '<cstm-form-team
+            data-id="'.$data['id'].'"
+            data-icon="'.$icon.'" 
+            data-is-right='.($include_right ? 'true' : 'false').'
+            data-name = "'.$firstname.' '.$lastname.'" 
+            data-skills="'.$skills2.'" 
+            data-description="'.$description.'"
+        ></cstm-form-team>';
     }
 
     return $html;
 }
 
-function psql_query_feedback($params, $smarty)
-{
+function psql_query_feedback($params, $smarty){
     global $wdbc;
-
-    /*require_once($_SERVER['DOCUMENT_ROOT'].TOTAL::CDB->value);             //-> [$dbname, $host, $port, $user, $passwd]; -> './config/config_db.php'
-    require_once($_SERVER['DOCUMENT_ROOT'].TOTAL::WDBC->value);             // -> WrapperDataBase(); -> './config/WrapperDataBaseConn.php' 
-
-    $wdbc = new WDBC($dbname, $host, $port, $user, $passwd);
-    */
-    /*$status = $wdbc ->query()
-            ->select ($params['select'])
-            ->from   ($params['from'])
-            ->orderby($params['orderby'])
-            ->limit  ($params['limit'])
-        ->exec();*/
 
     $status = true;
 
     $html = '';
     if ($status) {
         $array_data = $wdbc->query()->responce(); // $wdbc->query()->responce() // value="<?= $cur_idx
-
-
-        /*foreach($array_data as $data){
-                $html = $html.
-                    '<div class="item" style="">
-                    
-                    </div>';
-            }*/
 
         for ($i = 0; $i < 1; $i++) {
             $html = $html .
                 '<div class="item-of-feedback" style="display: block; "> <!-- none / block -->
 
-                    </div>';
+                </div>';
         }
 
         return $html;
@@ -1073,35 +994,14 @@ function psql_query_feedback($params, $smarty)
     return $html;
 }
 
-function psql_query_screenshots($params, $smarty)
-{
+function psql_query_screenshots($params, $smarty){
     global $wdbc;
-
-    /*require_once($_SERVER['DOCUMENT_ROOT'].TOTAL::CDB->value);             //-> [$dbname, $host, $port, $user, $passwd]; -> './config/config_db.php'
-    require_once($_SERVER['DOCUMENT_ROOT'].TOTAL::WDBC->value);             // -> WrapperDataBase(); -> './config/WrapperDataBaseConn.php' 
-
-    $wdbc = new WDBC($dbname, $host, $port, $user, $passwd);
-    */
-    /*$status = $wdbc ->query()
-            ->select ($params['select'])
-            ->from   ($params['from'])
-            ->orderby($params['orderby'])
-            ->limit  ($params['limit'])
-        ->exec();*/
 
     $status = true;
 
     $html = '';
     if ($status) {
         $array_data = $wdbc->query()->responce(); // $wdbc->query()->responce() // value="<?= $cur_idx
-
-
-        /*foreach($array_data as $data){
-                $html = $html.
-                    '<div class="item" style="">
-                    
-                    </div>';
-            }*/
 
         for ($i = 0; $i < 1; $i++) {
             $html = $html .
@@ -1116,35 +1016,14 @@ function psql_query_screenshots($params, $smarty)
     return $html;
 }
 
-function psql_query_vacancy($params, $smarty)
-{
+function psql_query_vacancy($params, $smarty){ // ???
     global $wdbc;
-
-    /*require_once($_SERVER['DOCUMENT_ROOT'].TOTAL::CDB->value);             //-> [$dbname, $host, $port, $user, $passwd]; -> './config/config_db.php'
-    require_once($_SERVER['DOCUMENT_ROOT'].TOTAL::WDBC->value);             // -> WrapperDataBase(); -> './config/WrapperDataBaseConn.php' 
-
-    $wdbc = new WDBC($dbname, $host, $port, $user, $passwd);
-    */
-    /*$status = $wdbc ->query()
-            ->select ($params['select'])
-            ->from   ($params['from'])
-            ->orderby($params['orderby'])
-            ->limit  ($params['limit'])
-        ->exec();*/
 
     $status = true;
 
     $html = '';
     if ($status) {
         $array_data = $wdbc->query()->responce(); // $wdbc->query()->responce() // value="<?= $cur_idx
-
-
-        /*foreach($array_data as $data){
-                $html = $html.
-                    '<div class="item" style="">
-                    
-                    </div>';
-            }*/
 
         for ($i = 0; $i < 1; $i++) {
             $html = $html .
@@ -1186,16 +1065,6 @@ function psql_query_properties_vacancy($params, $smarty){
     $del = 'false';
     if (empty($params["del"])) $del = $params["del"];
 
-    /*$premier        = '...';
-    $status         = '...';
-    $stack          = '...';
-    $communities    = '...';
-    $experts        = '...';
-    $tags           = '...';
-    $name           = (isset($params['name_default']) ? $params['name_default']: '');
-    $icon           = (isset($params['icon_default']) ? $params['icon_default']: '');
-    $about          = '...';*/
-
     $html = '';
 
     $array_data = ( isset($query) ? $query->fetchAllAssociative() : array()) ; // $wdbc->query()->responce() // value="<?= $cur_idx
@@ -1213,15 +1082,6 @@ function psql_query_properties_vacancy($params, $smarty){
                 $speciality   = ( isset($data['speciality']) ? $data['speciality']  : '');
                 $speciality   = ( isset($data['project_id']) ? $data['project_id']  : '');
 
-                /*if (isset($data['name']))            $name               = $data['name'];
-                if (isset($data['about']))           $about              = $data['about'];
-                if (isset($data['create']))          $create             = $data['create'];
-                if (isset($data['status']))          $status             = $data['status'];
-                if (isset($data['duties']))          $duties             = $data['duties'];
-                if (isset($data['tags']))            $tags               = $data['tags'];
-                if (isset($data['condidats']))       $condidats          = $data['condidats'];
-                if (isset($data['speciality']))      $speciality         = $data['speciality'];
-                if (isset($data['project_id']))      $project_id         = $data['project_id'];*/
                 break;
             case 'icon':
                 if (isset($data['icon']))            $icon           = '/assets/frontend/icons/avatars_vacancies/' . $data['icon']; // avatar ?
@@ -1239,8 +1099,6 @@ function psql_query_properties_vacancy($params, $smarty){
                 break;
             case 'tags':
                 $tags   = ( isset($data['tags']) ? json_decode($data['tags'])  : array());
-
-                // if (isset($data['tags']))            $tags           = json_decode($data['tags']); // Преобразовать id -> name;
                 break;
             case 'duties':
                 if (isset($data['duties']))          $duties         = json_decode($data['duties']);
@@ -1291,9 +1149,8 @@ function psql_query_properties_vacancy($params, $smarty){
 				<li onclick=\"resultSearchTags('Cindy')\"><a href=\"#\">Cindy</a></li>";
             break;
         case 'tags':
-            if (count($tags) === 0) { // strlen($tags) === 0
+            if (count($tags) === 0) { 
                 // $html .= '<input id="tags"      value="отсутствуют"    type="text"   style="text-align: center;"    readonly />';
-            
                 // Вывод информации об отсутствии тегов
             } else {
                 $html .= wrapperHtmlLabel(...$tags);

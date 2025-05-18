@@ -13,10 +13,3 @@ extension=php_pgsql.dll
 10) открыть http://localhost/potfolio/index.php
 
 ALTER TABLE public.info_project ALTER COLUMN refs TYPE json USING to_json(refs)::json;
-
-// Для сброса id
-ALTER SEQUENCE projects_id_seq RESTART;
-UPDATE public.projects SET id = DEFAULT;
-
-// Для изменения типа данных:
-ALTER TABLE public.info_project ALTER COLUMN references TYPE json USING (references::json);

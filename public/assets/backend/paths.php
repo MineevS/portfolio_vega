@@ -169,16 +169,10 @@
 	}
 
 	class SIZE_LOAD_PAGE {
-		public static $PROJECTS = 10;
-		public static $TEAMS = 3;
-		public static $VACANCIES = 10;
+		public static $PROJECTS  = 5;
+		public static $TEAMS     = 5;
+		public static $VACANCIES = 5;
 	}
-
-	/*enum SIZE_LOAD_PAGE : int {
-		case PROJECT = 3;
-		case TEAMS = 3;
-		case VACANCIES = 3;
-	}*/
 
 	class_alias($name_space . 'UPDATE_QUERY', $name_space . 'UQ');
 ?>

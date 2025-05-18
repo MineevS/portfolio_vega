@@ -1,4 +1,28 @@
-<section id="sctn-1" style="display: grid;"> <!-- style="width: 100%;" -->
+<?php
+/* Smarty version 5.4.3, created on 2025-05-18 11:14:25
+  from 'file:C:\projects\portfolio_serg\portfolio\public/assets/frontend/mains/main_for_projects.php' */
+
+/* @var \Smarty\Template $_smarty_tpl */
+if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
+  'version' => '5.4.3',
+  'unifunc' => 'content_682996e14aab32_97398346',
+  'has_nocache_code' => false,
+  'file_dependency' => 
+  array (
+    'd3cf0f380ab85a4221d5af06a67939a9a52763fa' => 
+    array (
+      0 => 'C:\\projects\\portfolio_serg\\portfolio\\public/assets/frontend/mains/main_for_projects.php',
+      1 => 1747556032,
+      2 => 'file',
+    ),
+  ),
+  'includes' => 
+  array (
+  ),
+))) {
+function content_682996e14aab32_97398346 (\Smarty\Template $_smarty_tpl) {
+$_smarty_current_dir = 'C:\\projects\\portfolio_serg\\portfolio\\public\\assets\\frontend\\mains';
+?><section id="sctn-1" style="display: grid;"> <!-- style="width: 100%;" -->
     <div class="elems">
         <article style="display: grid; width: 75%; justify-self: center;">
             <h1 class="HelveticaProject" style="justify-self: start;">Представляем вам</h1>
@@ -10,7 +34,8 @@
             <div style="display: flex; flex-direction: row; width: 70%; height: 2rem;">
                 <div class="inputDiv">
                     <!-- onblur="hideInputSugToolTip()" -->
-                    <input class="inputSearch" id="inputSearch" oninput="inputSugToolTip('{$ACTION}')">
+                    <input class="inputSearch" id="inputSearch" oninput="inputSugToolTip('<?php echo $_smarty_tpl->getValue('ACTION');?>
+')">
                     </input>
                     <!-- <div class="inputSug">
                         <ul class="inputSugUi" id="inputSugUi">
@@ -39,17 +64,23 @@
                             <path d="M2 10.5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1h-3a.5.5 0 0 1-.5-.5m0-3a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5m0-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5" />
                         </svg></button>
                     <div class="dropdown-content">
-                        <a href="#" onclick="order_sort.call(this, 'new', '{$ACTION}')">Новые</a>
-                        <a href="#" onclick="order_sort.call(this, ('old', '{$ACTION}')">Старые</a>
-                        <a href="#" onclick="order_sort.call(this, ('rel', '{$ACTION}')">Релевантные</a>
+                        <a href="#" onclick="order_sort.call(this, 'new', '<?php echo $_smarty_tpl->getValue('ACTION');?>
+')">Новые</a>
+                        <a href="#" onclick="order_sort.call(this, ('old', '<?php echo $_smarty_tpl->getValue('ACTION');?>
+')">Старые</a>
+                        <a href="#" onclick="order_sort.call(this, ('rel', '<?php echo $_smarty_tpl->getValue('ACTION');?>
+')">Релевантные</a>
                     </div>
                 </div>
             </div>
         </div>
         <hr class="hrProject">
         <div id="projects" class="container container-for-projects">
-            {query_projects select="*" from="$tab_projects" orderby="id" limit="$SIZE_PAGE_PROJECTS" offset="0"}
+            <?php echo $_smarty_tpl->getSmarty()->getFunctionHandler('query_projects')->handle(array('select'=>"*",'from'=>((string)$_smarty_tpl->getValue('tab_projects')),'orderby'=>"id",'limit'=>((string)$_smarty_tpl->getValue('SIZE_PAGE_PROJECTS')),'offset'=>"0"), $_smarty_tpl);?>
+
         </div>
-        <cstm-load-data class="next-load" action='{$ACTION}'></cstm-load-data>
+        <cstm-load-data class="next-load" action='<?php echo $_smarty_tpl->getValue('ACTION');?>
+'></cstm-load-data>
     </div>
-</section>
+</section><?php }
+}
