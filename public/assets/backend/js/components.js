@@ -122,7 +122,30 @@ export class CustomStar extends HTMLElement {
             <ellipse fill="url(#star-image-${id})" stroke="red" stroke-width="4" ry="120.22" rx="117" cy="262.22" cx="246" style="filter: grayscale(1);"/>
             <path fill="none" d="M262 380h10c1 0 2.027.23 3 0 2.176-.514 3-1 4-1s2-1 5-1c1 0 2-1 3-1s2.027.23 3 0c2.176-.514 3-1 5-1 1 0 2-1 3-1 2 0 4.293-.293 5-1a9.233 9.233 0 0 1 3-2c.924-.383 2.076.383 3 0 1.307-.541 2.186-.693 4-2 1.147-.827 2-1 3-1s2.076-.617 3-1c1.307-.541 1.824-2.486 4-3 1.946-.46 2.693-1.459 4-2 .924-.383 2.293-.293 3-1 .707-.707.293-1.293 1-2 .707-.707 2.15-.474 3-1 1.902-1.176 2.186-2.693 4-4 1.147-.827 1.293-1.293 2-2 .707-.707 1.076-.617 2-1 1.307-.541 1.293-1.293 2-2 .707-.707 1.459-.693 2-2 .383-.924 1.293-.293 2-1 .707-.707 1.293-2.293 2-3 .707-.707 1.293-.293 2-1 .707-.707.293-1.293 1-2 .707-.707 1.293-.293 2-1 .707-.707.459-1.693 1-3 .383-.924.293-1.293 1-2 .707-.707 1.293-.293 2-1 .707-.707.459-1.693 1-3 .383-.924 1.486-.824 2-3 .23-.973.293-1.293 1-2 .707-.707 1-1 1-2l2-2M140 207c0-1 1.77-3.027 2-4 .514-2.176-.072-5.611 2-8 1.465-1.69 2.293-2.293 3-3 .707-.707 1.419-.419 3-2s1.853-3.173 3-4c1.814-1.307 3.419-3.419 5-5s1-3 2-4c2-2 2.293-3.293 3-4l2-2c1-1 1.693-2.186 3-4 .827-1.147 1.186-1.693 3-3 1.147-.827 1.77-3.027 2-4 .514-2.176 1.693-3.186 3-5 .827-1.147 2.459-1.693 3-3 .383-.924.293-2.293 1-3 .707-.707 2.293-.293 3-1 .707-.707.853-2.173 2-3 1.814-1.307 2.853-2.173 4-3 1.814-1.307 3.293-2.293 4-3 .707-.707 2 0 3-1s3.293-1.293 4-2c.707-.707 2.293.707 3 0 .707-.707 1-1 2-1h2" stroke-width="4" stroke="red"/>
             <path fill="none" d="M142 194c0 1-.293 1.293-1 2-.707.707-.459 1.693-1 3-.383.924-.459 3.693-1 5-.383.924-1 2-1 3s-1 2-1 3-.459 1.693-1 3c-.765 1.848-.459 2.693-1 4-.765 1.848-1 4-1 5s-.459 1.693-1 3c-.383.924 0 2 0 3s-.459 1.693-1 3c-.383.924 0 2-1 3s-1.486 2.824-2 5c-.23.973-1 2-1 3s-.173 1.853-1 3c-1.307 1.814-.235 3.152-1 5-.541 1.307-1 2-1 3v6c0 1-1 2-1 3v21c0 2 1 3 1 5 0 1 1.459 1.693 2 3 .765 1.848-.46 3.054 0 5 .514 2.176 1 3 1 5 0 1-.23 4.027 0 5 .514 2.176 1 4 1 5v7c0 1 .54 2.054 1 4 .514 2.176 1 3 1 4s1 2 1 4c0 1 .459 1.693 1 3 .383.924 2 3 2 5 0 1 .293 2.293 1 3 .707.707 1.918 1.387 3 4 .383.924.459 1.693 1 3 .383.924-.051 1.299 1 3 1.176 1.902 3 3 4 4 2 2 3.415 4.189 4 5 1.849 2.565 6.889 4.194 12 7 3.92 2.152 6.797 4.256 8 5 2.69 1.663 6.868 2.289 11 4 2.922 1.21 4.647 2.973 9 4 3.893.919 7 1 11 1h25c1 0 2 1 4 1 1 0 3.022-.367 6 0 4.092.504 5.693 1.459 7 2 1.848.765 6.938.498 13 1 3.986.33 6 0 7 0s3.039-.48 6 0c3.121.507 7 1 9 1h16c1 0 2.076.383 3 0 1.307-.541 3.15-.474 4-1 1.902-1.176 2.693-2.459 4-3 .924-.383.419-1.419 2-3s4-2 5-3l4-4c1-1 1.076-1.617 2-2 1.307-.541 3-4 5-5s4.076-2.617 5-3c1.307-.541 1.293-1.293 2-2 .707-.707 1.076-.617 2-1 1.307-.541 1.853-1.173 3-2 1.814-1.307 3.076-2.617 4-3a9.233 9.233 0 0 0 3-2c.707-.707.293-2.293 1-3 .707-.707 1-1 2-1s.293-1.293 1-2c.707-.707 1.459-.693 2-2 .383-.924 2-2 2-3v-1M364 322v-3c0-1 .293-1.293 1-2 .707-.707-.707-2.293 0-3 .707-.707 1.459-.693 2-2 1.148-2.772.235-4.152 1-6 .541-1.307 1-2 1-3 0-2 1.486-3.824 2-6 .46-1.946-.148-4.228 1-7 .541-1.307.235-2.152 1-4 .541-1.307 2-4 2-5s.459-1.693 1-3c.765-1.848 0-3 0-4v-35c0-1-.617-3.076-1-4-.541-1.307-1.493-2.879-2-6-.32-1.974-.42-5.086-1-7-1.045-3.45-2.52-5.039-3-8-.507-3.121-2.459-3.693-3-5-.383-.924 0-2-1-3l-3-3c-1-1-2-3-4-5-1-1-1-3-2-4s-.293-2.293-1-3l-2-2c-1-1-.419-2.419-2-4l-3-3c-1-1-3.853-4.173-5-5-1.814-1.307-2-2-3-3s-1-2-2-2-1.293-1.293-2-2c-.707-.707-3-1-5-2s-3-2-5-3-4.293-.293-5-1c-.707-.707-.293-1.293-1-2-.707-.707-1.054-.54-3-1-2.176-.514-6.31-3.337-9-5-1.203-.744-1-2-2-2h-3c-1 0-1.293-.293-2-1-.707-.707-1-1-2-1s-1-1-2-1h-1v-1h-1" stroke-width="4" stroke="red"/>
+
+			<use id="is_active"></use>
 		</svg>`;
+	}
+
+	static get observedAttributes() {
+	    return ['class']; // /* массив имён атрибутов для отслеживания их изменений */
+	}
+
+	attributeChangedCallback(name, oldValue, newValue) {
+	    // вызывается при изменении одного из перечисленных выше атрибутов
+		switch(name){
+		  case 'class':
+			if(this.lastElementChild) {
+				var svg_active = this.lastElementChild.lastElementChild;
+					
+				if(this.classList.contains('active')){
+					  svg_active.setAttribute('href', '#active_star');
+				} else {
+					  svg_active.removeAttribute('href');
+				}
+			}
+			break;
+		}
 	}
 }
 
@@ -747,14 +770,16 @@ export class CustomHeader extends HTMLElement {
             "profile" : {'width': 214, 'height': 211 }, 
             "project" : {'width': 225, 'height': 221 },
 			"vacancy" : {'width': 225, 'height': 221 },
+			"projects": {'width': 225, 'height': 221 },
+			"vacancies": {'width': 225, 'height': 221 },
+			"teams"   : {'width': 225, 'height': 221 }
         };
 
-        var width   = map_status_color[currentPage].width;
-        var height  = map_status_color[currentPage].height;
+        var width   = (map_status_color[currentPage].width ? map_status_color[currentPage].width : 225);
+        var height  = (map_status_color[currentPage].height ? map_status_color[currentPage].height : 221);
 
-        var url_img = ( url !== '' ?  url : this.getAttribute('url_temp_img'));
-        var action  = (this.hasAttribute('action') ? this.getAttribute('action') : ''); // this.getAttribute('content')
-
+        var url_img =  ( url !== '' ?  url : `href="` +  this.getAttribute('url_temp_img')  + `"`);
+        var action  = (this.hasAttribute('action') ? this.getAttribute('action') : '');
 		var name    = this.getAttribute('name');
 
 		var data    = (this.hasAttribute('data') ? this.getAttribute('data') : '').split(',');
@@ -798,9 +823,9 @@ export class CustomHeader extends HTMLElement {
 
 		var head_html = (data === '' || data == null ? '': `
 			<article class="title">
-				<h1 class="HelveticaProject" style="justify-self: start;">${data[0]}</h1>
-				${( data.length > 1 ? '<p class="VasekProject" style="justify-self: center;">' + data[1] + '</p>': '')}
-	            ${( data.length > 2 ? '<h1 class="HelveticaProject" style="justify-self: end;">' + data[2] + '</h1>': '')}
+				<h1 class="HelveticaProject left" >${data[0]}</h1>
+				${( data.length > 1 ? '<p class="VasekProject center">' + data[1] + '</p>': '')}
+	            ${( data.length > 2 ? '<h1 class="HelveticaProject right">' + data[2] + '</h1>': '')}
 			</article>`);
 		
         this.innerHTML = `
@@ -812,7 +837,7 @@ export class CustomHeader extends HTMLElement {
                         <pattern id="pattern_${currentPage}" width="1" height="1" patternContentUnits="objectBoundingBox">
                             <use href="#img_${currentPage}" transform="translate(0 -.6) scale(.00174)" />
                         </pattern>
-                        <image class="avatar" name="avatar_base" id="img_${currentPage}" width="576" height="1280" href="${url_img}" />
+                        <image class="avatar" name="avatar_base" id="img_${currentPage}" width="576" height="1280" ${url_img} />
                     </defs>
                     <use xlink:href="#for_${currentPage}" ></use>
                 </svg>
@@ -981,7 +1006,7 @@ export class CustomButtonAdd extends HTMLElement {
 						<svg class="add" width="48" height="48">
 							<use xlink:href="#add"></use>
 						</svg>
-						<input class="contentProperty for_load_files" name="${data_for}" type="file" multiple accept="image/jpeg,image/png,image/gif" onchange="editPage.call(this, true, true, true, false, '${window.base_url}')" />
+						<input class="contentProperty for_load_files" name="${data_for}" type="file" multiple accept="image/jpeg,image/png,image/gif" onchange="editPage.call(this, true, true, true, false, '/assets/frontend/pages/action.php')" />
 					</button>`;
 				break; // onclick="addElement.call(this.parentNode.parentNode, '${data_for}');"
 			case 'references':
@@ -1148,7 +1173,8 @@ export class CustomFormProject extends CustomForm {
             svg_id   = data.svg_id;
         }
 
-        var cls = ( count_like > 0 && is_like ? 'like-svg': 'not-like-svg');
+        var cls = ''; // ( count_like > 0 && is_like ? 'like-svg': 'not-like-svg'); // not-like-svg
+		var elem_href = ( count_like > 0 && is_like ? 'like': 'dislike');
         
         var right_html = '', left_html = '';
         if(is_right === "true"){
@@ -1173,6 +1199,8 @@ export class CustomFormProject extends CustomForm {
                     <p class="projectStatus" style="color: ${color};">${status}</p>
                 </div>`;
 
+			// <use xlink:href="#heart"></use> // <!-- xlink:href="#heart" -->
+
             right_html += `
 				<p class="projectBody" >${description}</p>
 				<div class="tgs"> 
@@ -1181,8 +1209,8 @@ export class CustomFormProject extends CustomForm {
 				<div class="projectLikeComms"> 
 					<div style="display: flex; flex-direction: row; align-items: center;"> 
 						<div style="margin-right: 1rem;">
-							<svg class="${cls}" id="like-${id}"  onclick="like.call(this.nextElementSibling, ${id} , \'${url}\')" >
-								<use xlink:href="#heart"></use>
+							<svg class="${cls}" id="like-${id}" width="20" height="20" onclick="like.call(this.nextElementSibling, ${id} , \'${url}\')" >
+								<use id="heart" href="#${elem_href}"></use>
 							</svg>
 							<small class="contentProperty" name="likee-${id}">${count_like}</small> 
 						</div>

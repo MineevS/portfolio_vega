@@ -1,4 +1,28 @@
-<!DOCTYPE HTML>
+<?php
+/* Smarty version 5.5.0, created on 2025-05-18 11:49:50
+  from 'file:C:\xampp\htdocs\portfolio\public/../src/smarty_dirs/templates/main.tpl' */
+
+/* @var \Smarty\Template $_smarty_tpl */
+if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
+  'version' => '5.5.0',
+  'unifunc' => 'content_6829ad3e27b0d7_38832802',
+  'has_nocache_code' => false,
+  'file_dependency' => 
+  array (
+    '0407019941eb5523427210527de8c525c923eb1d' => 
+    array (
+      0 => 'C:\\xampp\\htdocs\\portfolio\\public/../src/smarty_dirs/templates/main.tpl',
+      1 => 1747559975,
+      2 => 'file',
+    ),
+  ),
+  'includes' => 
+  array (
+  ),
+))) {
+function content_6829ad3e27b0d7_38832802 (\Smarty\Template $_smarty_tpl) {
+$_smarty_current_dir = 'C:\\xampp\\htdocs\\portfolio\\src\\smarty_dirs\\templates';
+?><!DOCTYPE HTML>
 <html>
 	<head>
 		<meta charset="utf-8">
@@ -6,21 +30,47 @@
 		
 		<title>Портфолио - ВЕГА</title>
 		
-		<link type="image/x-icon" rel="icon" href="{$FCN}">
+		<link type="image/x-icon" rel="icon" href="<?php echo $_smarty_tpl->getValue('FCN');?>
+">
 
-		<link type="text/css" rel="stylesheet" href="{$CSS_TOTAL}">
-		<link type="text/css" rel="stylesheet" href="{$CSS_MAIN}"> 
-		<link type="text/css" rel="stylesheet" href="{$CSS_AOS}">
-		<link type="text/css" rel="stylesheet" href="{$CSS_SELECT2}"/>
+		<link type="text/css" rel="stylesheet" href="<?php echo $_smarty_tpl->getValue('CSS_TOTAL');?>
+">
+		<link type="text/css" rel="stylesheet" href="<?php echo $_smarty_tpl->getValue('CSS_MAIN');?>
+"> 
+		<link type="text/css" rel="stylesheet" href="<?php echo $_smarty_tpl->getValue('CSS_AOS');?>
+">
+		<link type="text/css" rel="stylesheet" href="<?php echo $_smarty_tpl->getValue('CSS_SELECT2');?>
+"/>
 
-		<script type="text/javascript" src="{$SJS}"></script>
-		<script type="module" src="{$JSX}" ></script> 
-		<script type="text/javascript" src="{$JQR}"></script>
-		<script type="text/javascript" src="{$AOS}"></script>
-		<script type="text/javascript" src="{$SELECT2}"></script>
+		<?php echo '<script'; ?>
+ type="text/javascript" src="<?php echo $_smarty_tpl->getValue('SJS');?>
+"><?php echo '</script'; ?>
+>
+		<?php echo '<script'; ?>
+ type="module" src="<?php echo $_smarty_tpl->getValue('JSX');?>
+" ><?php echo '</script'; ?>
+> 
+		<?php echo '<script'; ?>
+ type="text/javascript" src="<?php echo $_smarty_tpl->getValue('JQR');?>
+"><?php echo '</script'; ?>
+>
+		<?php echo '<script'; ?>
+ type="text/javascript" src="<?php echo $_smarty_tpl->getValue('AOS');?>
+"><?php echo '</script'; ?>
+>
+		<?php echo '<script'; ?>
+ type="text/javascript" src="<?php echo $_smarty_tpl->getValue('SELECT2');?>
+"><?php echo '</script'; ?>
+>
 
-		<!--<script type="text/javascript" src="{$JSREACT}"></script>-->
-		<script type="text/javascript" src="{$JSAPP}"></script>
+		<!--<?php echo '<script'; ?>
+ type="text/javascript" src="<?php echo $_smarty_tpl->getValue('JSREACT');?>
+"><?php echo '</script'; ?>
+>-->
+		<?php echo '<script'; ?>
+ type="text/javascript" src="<?php echo $_smarty_tpl->getValue('JSAPP');?>
+"><?php echo '</script'; ?>
+>
 
 		<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 			<!-- For edit button -->
@@ -132,70 +182,61 @@
 			<symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 30" fill="none" id="load_scroll">
 				<path fill="white" d="M15.999 5.104a1 1 0 1 0-2 0h2Zm-1.707 20.498a1 1 0 0 0 1.414 0l6.364-6.363a1 1 0 0 0-1.414-1.415l-5.657 5.657-5.657-5.657a1 1 0 1 0-1.414 1.415l6.364 6.363Zm-.293-20.498v19.791h2V5.104h-2Z" />
 			</symbol>
-			<symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" id="search_btn">
-				<path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"></path>
-            </symbol>  
-			<symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" id="funnel_btn">
-				<path d="M1.5 1.5A.5.5 0 0 1 2 1h12a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.128.334L10 8.692V13.5a.5.5 0 0 1-.342.474l-3 1A.5.5 0 0 1 6 14.5V8.692L1.628 3.834A.5.5 0 0 1 1.5 3.5zm1 .5v1.308l4.372 4.858A.5.5 0 0 1 7 8.5v5.306l2-.666V8.5a.5.5 0 0 1 .128-.334L13.5 3.308V2z" />
-            </symbol>     
-			<symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" id="filter_btn">
-				<path d="M2 10.5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1h-3a.5.5 0 0 1-.5-.5m0-3a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5m0-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5" />
-            </symbol>
-
-			<symbol xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 -20 311 288" id="active_star">
-				<path stroke="#EA5657" stroke-linecap="round" stroke-width="3" d="m85.94 36.06-34-34m257.505 177.385L263 167M157 286.084v-48.083M220 36.06l34-34M2 179.445 48.445 167"/>
-			</symbol>
-
-			<symbol xmlns="http://www.w3.org/2000/svg" fill="none"  viewBox="0 0 30 30" id="dislike">
-				<path stroke="#202020" stroke-linejoin="round" d="M20.449 3.53c-2.411 0-4.487 2.118-5.448 4.33-.963-2.212-3.037-4.33-5.448-4.33-1.598 0-3.13.685-4.26 1.904-1.129 1.22-1.764 2.875-1.764 4.6 0 7.302 6.822 9.217 11.47 16.437 4.393-7.177 11.472-9.369 11.472-16.438 0-1.725-.635-3.379-1.764-4.598-1.13-1.22-2.661-1.905-4.258-1.906Z"/>
-			</symbol>
-			
-			<symbol xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 30 30" id="like">
-				<path fill="#EA5657" stroke="#202020" stroke-linejoin="round" d="M17.449.53C15.038.53 12.962 2.647 12 4.86 11.038 2.647 8.964.53 6.553.53c-1.598 0-3.13.685-4.26 1.904C1.165 3.654.53 5.31.53 7.034.53 14.336 7.351 16.25 12 23.47c4.393-7.177 11.472-9.369 11.472-16.438 0-1.725-.635-3.379-1.764-4.598-1.13-1.22-2.661-1.905-4.258-1.906Z"/>
-			</symbol>
 		</svg>
 	</head>
 	<body>
 		<div class="layout">
 			<header>
-				<a class="logo" href="{$INDEX}">
+				<a class="logo" href="<?php echo $_smarty_tpl->getValue('INDEX');?>
+">
 					<h1 class="font-logo">ПОРТФОЛИО</h1>
 				</a>
 				<div class="menu">
 					<nav class="nav">
 						<ul>
 							<li>
-								<a href="{$PROJECTS}">Проекты</a>
+								<a href="<?php echo $_smarty_tpl->getValue('PROJECTS');?>
+">Проекты</a>
 							</li>
 							<li>
-								<a href="{$TEAMS}">Команды</a>
+								<a href="<?php echo $_smarty_tpl->getValue('TEAMS');?>
+">Команды</a>
 							</li>
 							<li>
-								<a href="{$VACANCIES}">Вакансии</a>
+								<a href="<?php echo $_smarty_tpl->getValue('VACANCIES');?>
+">Вакансии</a>
 							</li>
 						</ul>
 					</nav>
 					<div>
-						{if isset($icon)|default}
+						<?php if ((($tmp = (true && ($_smarty_tpl->hasVariable('icon') && null !== ($_smarty_tpl->getValue('icon') ?? null))) ?? null)===null||$tmp==='' ? '' ?? null : $tmp)) {?>
 							<div class="dropdownProfile">
 							<a href="" class="dropbtnProfile">
-								<img id="profile" class="avatar" src="{$icon}" />
+								<img id="profile" class="avatar" src="<?php echo $_smarty_tpl->getValue('icon');?>
+" />
 							</a>
 								<div class="dropdown-content">
-									<a href="#" onclick="window.location.href='{$PROFILE}'">Мой профиль</a>
-									<a href="#" onclick="logout('{$ACTION}');">Выход</a>
+									<a href="#" onclick="window.location.href='<?php echo $_smarty_tpl->getValue('PROFILE');?>
+'">Мой профиль</a>
+									<a href="#" onclick="logout('<?php echo $_smarty_tpl->getValue('ACTION');?>
+');">Выход</a>
 								</div>
 							</div>
-						{else}
+						<?php } else { ?>
 							<div>
-								<a target="iframe-auth-reg" onclick="create_iframe_authorization_registration();" href="{$HFR}" >Вход</a> <!-- <?php echo AUTH::PATH->value; ?> href="./frames/authorization.html" -->
+								<a target="iframe-auth-reg" onclick="create_iframe_authorization_registration();" href="<?php echo $_smarty_tpl->getValue('HFR');?>
+" >Вход</a> <!-- <?php echo '<?php'; ?>
+ echo AUTH::PATH->value; <?php echo '?>'; ?>
+ href="./frames/authorization.html" -->
 							</div>
-						{/if}
-					</div> 						<!--{date_now}-->
+						<?php }?>
+					</div> 						<!--<?php echo $_smarty_tpl->getSmarty()->getFunctionHandler('date_now')->handle(array(), $_smarty_tpl);?>
+-->
 				</div>
 			</header>
 			<main>
-				{include file="$MAIN"}
+				<?php $_smarty_tpl->renderSubTemplate(((string)$_smarty_tpl->getValue('MAIN')), $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), (int) 0, $_smarty_current_dir);
+?>
 			</main>
 			<footer>
 				<a href="index.html" class="logo d-flex align-items-center">
@@ -211,7 +252,10 @@
 		</div>
 	</body>
 	<!-- script's code -->
-	<script>
+	<?php echo '<script'; ?>
+>
 		AOS.init();
-	</script>
-</html>
+	<?php echo '</script'; ?>
+>
+</html><?php }
+}

@@ -220,6 +220,8 @@ function close_iframe() {
     iframe.remove();
 }
 
+window.close_iframe = close_iframe;
+
 function change_size_iframe(name_iframe, width, height) {
     // Получение корневого элемента
     const root = document.querySelector(":root");
@@ -227,6 +229,8 @@ function change_size_iframe(name_iframe, width, height) {
     // Изменение значения стиля для корневого элемента
     root.style.setProperty("--iframeHeight", `${height}vh`);
 }
+
+window.change_size_iframe = change_size_iframe;
 
 function logout(path) {
     $.ajax({
@@ -1181,7 +1185,22 @@ class Carousel {
 
   updateCarousel() {
     this.items.forEach(item => item.classList.remove('active'));
-    this.items[this.currentIndex].classList.add('active');
+
+	var activeitem = this.items[this.currentIndex];
+	  
+    activeitem.classList.add('active');
+
+	  
+
+	let curTitle = document.getElementById('bestPeople');
+    
+	curTitle.childNodes[1].innerHTML = activeitem.attributes[3].nodeValue;
+
+	// if(activeitem.previousElementSibling && activeitem.previousElementSibling.previousElementSibling) activeitem.previousElementSibling.previousElementSibling.style.transform = "scale(0.4)";
+	// if(activeitem.previousElementSibling) activeitem.previousElementSibling.style.transform = "scale(0.7)";
+	// if(activeitem.nextElementSibling) activeitem.nextElementSibling.style.transform = "scale(0.7)";
+	// if(activeitem.nextElementSibling && activeitem.nextElementSibling.nextElementSibling) activeitem.nextElementSibling.nextElementSibling.style.transform = "scale(0.4)";
+	  
     this.centerCarousel();
   }
 
@@ -1260,63 +1279,15 @@ window.addEventListener('DOMContentLoaded', function () {
 		new Carousel(document.querySelector('.carousel-container'));
 	}
 	
-/*
-	switch(currentPage){
-		case '':
-			// Инициализация карусели
-			new Carousel(document.querySelector('.carousel-container'));
-			break;
-	}
-*/
-
-
-
-/*document.querySelectorAll('.starBtn').forEach(button => {
-button.addEventListener('click', () => {
-    const carousel = button.parentElement.querySelector('.carousel-inner');
-    const scrollWidth = carousel.scrollWidth;
-    const itemWidth = carousel.querySelector('cstm-star').offsetWidth;
-    const scrollPosition = carousel.scrollLeft;
-    
-    button.classList.contains('prev') 
-      ? carousel.scrollBy({ left: -itemWidth, behavior: 'smooth' })
-      : carousel.scrollBy({ left: itemWidth, behavior: 'smooth' });
-  });
-});*/
-
-    // window.onresize = updateTextAreaResize;
-    //setInterval(goToNextSlide, 2000);
 }, false);
-
-/*window.addEventListener("DOMContentLoaded", function() {
-    var input = document.querySelector("#online_phone");
-    input.addEventListener("input", mask, false);
-    input.focus();
-    setCursorPosition(3, input);
-});*/
 
 function goToSlide2(index) {
     const carouselItems = document.getElementsByClassName('item-of-stars'); //querySelectorAll
 
     if (carouselItems.length > 0) {
-        //console.log(carouselItems[currentIndex]);
-        //carouselItems[currentIndex].style.visibility = 'hidden';
-        //carouselItems[currentIndex].style.transform = `scale(0.5)`;
-
-        /*if (index < 0) {
-        index = carouselItems.length - 1;
-        } else if (index >= carouselItems.length) {
-        index = 0;
-        }*/
-
         localIndex = index % carouselItems.length;
         currentIndex = index;
-
-
-        ///carouselItems[currentIndex].style.visibility = 'visible';
-
-        //document.querySelector('.carousel-inner').style.transform = `translateX(-${currentIndex * 25}%)`;
-
+		
         var elem = carouselItems[localIndex];
 
         if (carouselItems.length > 5) {
@@ -1451,12 +1422,13 @@ function inputSugToolTip(path) {
 
     let inputValue = document.getElementById("inputSearch").value;
     //document.getElementsByClassName('inputSug')[0].style.display = 'flex';
-
+	var currentPage = getCurrentPage();
     $.ajax({
         type: "POST",
         url: path,
         data: {
             search: inputValue,
+			forPage: currentPage,
             action: "show_input_suggestion"
         },
         success: function (result) {
@@ -1510,11 +1482,13 @@ function orderByNewest(path) {
     });
 }
 
-function order_sort(type, path) {
-    var currentPage = window.location.href.split('/').pop().split('.')[0];
+window.orderByNewest = orderByNewest;
 
-    if (this.style.background === '') {
-        this.style.background = 'red';
+function order_sort(type, path) {
+    var currentPage = getCurrentPage();//window.location.href.split('/').pop().split('.')[0];
+
+    // if (this.style.background === '') {
+    //     this.style.background = 'red';
 
         $.ajax({
             type: "POST",
@@ -1535,12 +1509,14 @@ function order_sort(type, path) {
             }
         });
 
-    } else {
-        this.style.background = '';
+    // } else {
+    //     this.style.background = '';
 
-        query_projects(path);
-    }
+    //     query_projects(path);
+    // }
 }
+
+window.order_sort = order_sort;
 
 function resizeTextarea() {
     this.style.height = '1px';
@@ -1559,44 +1535,46 @@ function changeStars() {
     }
 }
 
-function moveStar(diriction) {
+function moveStar() {
 
-    var itemListParent = document.querySelector('.carousel-inner');
-    var itemList = document.querySelectorAll('.star');
+    // var itemListParent = document.querySelector('.carousel');
+    // var itemList = document.querySelectorAll('.carousel-item');
 
     // hideNonShowStars(itemList);
 
-    console.log(itemListParent);
+    // console.log(itemListParent);
 
 
-    if (diriction === 0) {
-        itemListParent.insertBefore(itemList[0], null)
-    } else {
-        itemListParent.insertBefore(itemList[9], itemList[0]);
-    }
+    // if (diriction === 0) {
+    //     itemListParent.insertBefore(itemList[0], null)
+    // } else {
+    //     itemListParent.insertBefore(itemList[9], itemList[0]);
+    // }
     // $(itemList[0]).hide().slideDown(2000);
 
-    var itemList = document.querySelectorAll('.star');
-    // setTimeout(() => {
+    // var itemList = document.querySelectorAll('.star');
+    // // setTimeout(() => {
 
-    itemList[0].style.setProperty('transform', 'scale(0.3)');
-    itemList[1].style.setProperty('transform', 'scale(0.7)');
-    itemList[2].style.setProperty('transform', 'scale(1)');
-    itemList[3].style.setProperty('transform', 'scale(0.7)');
-    itemList[4].style.setProperty('transform', 'scale(0.3)');
+    // itemList[0].style.setProperty('transform', 'scale(0.3)');
+    // itemList[1].style.setProperty('transform', 'scale(0.7)');
+    // itemList[2].style.setProperty('transform', 'scale(1)');
+    // itemList[3].style.setProperty('transform', 'scale(0.7)');
+    // itemList[4].style.setProperty('transform', 'scale(0.3)');
     // }, 100);
 
-    let nextTitle = itemList[2].title.split(',');
+    // let nextTitle = itemList[2].title.split(',');
 
-    let curTitle = document.getElementById('bestPeople');
+    // let curTitle = document.getElementById('bestPeople');
 
-    curTitle.childNodes[0].innerHTML = nextTitle[0];
-    curTitle.childNodes[1].innerHTML = nextTitle[1];
-    curTitle.childNodes[2].innerHTML = nextTitle[2];
+    // curTitle.childNodes[0].innerHTML = nextTitle[0];
+    // curTitle.childNodes[1].innerHTML = nextTitle[1];
+    // curTitle.childNodes[2].innerHTML = nextTitle[2];
 
-    $("#bestPeople").hide().fadeIn("slow");
+    // $("#bestPeople").hide().fadeIn("slow");
 
 }
+
+window.moveStar = moveStar;
 
 export function arrowAnimationEnter(el) {
     console.log(el);
@@ -1654,8 +1632,15 @@ function like(project_id, path) {
 				 is_like_project = json_data['is_like'];
 
 				// Отметка успешности.
-				this.previousElementSibling.classList.toggle('like-svg', is_like_project);
-				this.previousElementSibling.classList.toggle('not-like-svg', !is_like_project);
+
+				if(is_like_project){
+					this.previousElementSibling.lastElementChild.setAttribute('href', '#like');
+				} else {
+					this.previousElementSibling.lastElementChild.setAttribute('href', '#dislike');
+				}
+				
+				// this.previousElementSibling.classList.toggle('like-svg', is_like_project);
+				// this.previousElementSibling.classList.toggle('not-like-svg', !is_like_project);
 
 				// Обновление счётчика лайков.
 				this.textContent = json_data['like']; 

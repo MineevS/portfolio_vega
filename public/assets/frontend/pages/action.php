@@ -183,7 +183,31 @@ require_once($root . '/assets/backend/auth_profile.php');
         case \ACTION::show_input_suggestion->name: // Подсказка для поиска проектов;
             
             $search = $_POST['search'];
-            $tab = \TBN::PROJECTS->value; //'info_project'
+            $page = $_POST['forPage'];
+            
+            switch ($page){
+                case "projects":
+                    $tab = \TBN::PROJECTS->value; //'info_project'
+                    break;
+                case "teams":
+                    $tab = \TBN::PROFILES->value; 
+                    break;
+                case "vacancies":
+                    $tab = \TBN::VACANCIES->value; 
+                    break;
+            }
+            
+            if (!isset($tab)){
+                $load_page_name = 'load_' . $page;
+
+                echo json_encode(array(
+                    $load_page_name => "error",
+                    'error_code' => 0
+                ));
+
+                exit();
+            }
+            
             $params = array(
                 'select' => '*',
                 'from' => "$tab",
@@ -194,15 +218,10 @@ require_once($root . '/assets/backend/auth_profile.php');
 
             $content_html = psql_query_projects($params, $smarty);
 
-            //psql_query_projects($params, $smarty);
-
-            //$content_html = '';
-            //if($result) $data = $wdbc->responce();
-
             echo json_encode(array(
                 'load_projects' => "success",
                 'error_code' => 0,
-                'data' => $content_html // $wdbc->query()->request()
+                'data' => $content_html
             ));
 
             break;
@@ -222,6 +241,7 @@ require_once($root . '/assets/backend/auth_profile.php');
 
                     switch($type){
                         case 'new':
+                            $ordebytype = \OBT::ASC->name;
                             break;
                         case 'old':
                             $ordebytype = \OBT::DESC->name;
@@ -235,14 +255,6 @@ require_once($root . '/assets/backend/auth_profile.php');
                     break;                      
             }
 
-            /*
-            LIMIT 10;
-            groupby('create')
-            orderByType(OBT::ASC->value)
-            ASC/DESC
-            */
-            
-            
             $params = array(
                 'select' => '*',
                 'from' => "$tab",

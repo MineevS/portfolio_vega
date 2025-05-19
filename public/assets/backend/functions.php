@@ -221,16 +221,18 @@ function make_query($params, $smarty){
 
     if (isset($params['where']) && isset($params[$params['where']]))
         $query->where($params['where'] . ' = ' . $params[$params['where']]);
-    else if(isset($params['where'])) 
+    
+    /*else if(isset($params['where'])) 
         $query->where($params['where']);
+    */
 
-    if (isset($params['ilike'])) $query->ilike($params['ilike']);
+    if (isset($params['ilike'])) $query->where($query->expr()->comparison($params['where'], 'ILIKE', $params['ilike']));
 
     // if (isset($params['orderby'])) $query->orderby($params['orderby']); 
 
-    if(isset($params['orderbytype'])){
-        $query->orderby($params['orderby'], $params['orderbytype']);
-    } else if (isset($params['orderby'])) $query->orderby($params['orderby']);
+    if(isset($params['orderbytype'])){ // ASC, DECS
+        $query->orderBy($params['orderby'], $params['orderbytype']);
+    } else if (isset($params['orderby'])) $query->orderBy($params['orderby']);
 
     if (isset($params['offset']))
         $query->setFirstResult($params['offset']); // offset($params['offset']); // $query->offset($params['offset']);
@@ -603,7 +605,7 @@ function psql_query_header_page($params, $smarty){
 
     $action = $smarty->getTemplateVars('ACTION');
     $url_templ_img = $smarty->getTemplateVars('template_name_default_img');
-
+    $url_img = '';
 
     $page = explode('.', end(explode('_', end(explode('/', $smarty->template_resource)))))[0];
 
@@ -612,6 +614,8 @@ function psql_query_header_page($params, $smarty){
     $data = '';
 
     $page_default = '';
+
+    $name = '';
 
     switch ($page) {
         case 'profile':
@@ -643,6 +647,13 @@ function psql_query_header_page($params, $smarty){
                 $page_default = $smarty->getTemplateVars('page_default');
             }
             break;
+
+        case 'teams':
+        case 'vacancies':
+        case 'projects':
+            $data = $params['data'];
+            break;
+            
         case 'vacancy':
             $params_list = array(
                 'for' => "name",
@@ -847,8 +858,10 @@ function psql_query_properties_project($params, $smarty){
             if (isset($data[$params["for"]])) {
                 $screenshots = json_decode($data[$params["for"]]);
 
+                $pid = $_POST['id'];
+
                 foreach ($screenshots as $screenshot) {
-                    $html .= '<cstm-screenshot src="/assets/frontend/img/'.$screenshot.'"></cstm-screenshot>';
+                    $html .= '<cstm-screenshot src="/assets/frontend/img/projects/screens_for_project_id_'.$pid."/".$screenshot.'"></cstm-screenshot>';
                 }
             }
 

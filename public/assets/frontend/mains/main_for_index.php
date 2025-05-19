@@ -29,7 +29,7 @@
 	</div>
 </section>
 <section id="sctn-3" data-aos="fade-up">
-	{query_article head1="А это основные" svg="1" head3="исследований и разработки" class="HelveticaMainWhite" style="width: 85%; padding: 3%;" style="display: grid; width: 80%;"}
+	{query_article head1="А это основные" svg="1" head3="исследований и разработки" class="HelveticaMainWhite" style="display: grid; width: 85%;"}
 	<div class="interestDiv">
 		{query_interests}
 	</div>
@@ -37,7 +37,7 @@
 <section class="stars_user" id="sctn-4" data-aos="fade-up">
 	{query_article head1="Наши звёзды с" svg="2" head3="сияют ярче, чем в Голливуде" class="HelveticaMain" style="display: grid; width: 70%;"}
 	<div class="container stars">
-		<svg class="starBtn prev">
+		<svg class="starBtn prev" onclick="moveStar()">
 			<use xlink:href="#prev"></use>
 		</svg>
 		<div class="carousel-container">
@@ -45,7 +45,7 @@
 				{query_stars select="*" from="$tag_awesome" orderby="id"}
 			</div>
 		</div>
-		<svg class="starBtn next">
+		<svg class="starBtn next" onclick="moveStar()">
 			<use xlink:href="#next"></use>
 		</svg>
 	</div>

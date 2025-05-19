@@ -6,7 +6,7 @@
 		</cstm-container>
 		<cstm-container class="references" article="Ссылки">
 			{query_properties_project for="references"}
-			{query_properties_add     for="references"}
+			{query_properties_add for="references"}
 		</cstm-container>
 		<cstm-container class="about" article="О проекте">
 			{query_properties_project for="description"}
@@ -20,7 +20,7 @@
 			</div>
 		</cstm-container>
 		<cstm-container class="stack" article="Стек технологий">
-			<div name="stack "  class="contentProperty container stck">
+			<div name="stack " class="contentProperty container stck">
 				{query_properties_project for="stack"}
 			</div>
 			<div class="stck2 hide">
@@ -38,7 +38,9 @@
 		<cstm-container class="screenshots" article="Скриншоты">
 			<div class="container screenshots1">
 				{query_properties_project for="screenshots"}
-				{query_properties_add     for="screenshots"}
+				{if $access|default}
+					{query_properties_add for="screenshots"}
+				{/if}
 			</div>
 			<div class="overlay" onclick="closeZoom()"></div> <!-- For zoom screenshots -->
 		</cstm-container>
@@ -47,9 +49,9 @@
 				{query_properties_project for="feedback"}
 			</div>
 			{if $access|default}
-				<div class="container feedbacks2">
-					{query_properties_add for="feedbacks"}
-				</div>
+			<div class="container feedbacks2">
+				{query_properties_add for="feedbacks"}
+			</div>
 			{/if}
 		</cstm-container>
 		<cstm-container class="artefacts" article="Артефакты">
@@ -58,13 +60,13 @@
 			</div>
 			<div class="container artefacts2">
 				{if $access|default}
-					{query_properties_add for="artefacts"}
+				{query_properties_add for="artefacts"}
 				{/if}
 			</div>
 		</cstm-container>
 		<cstm-container class="vacancy" article="Вакансии" add='{$access ? "true" : "false" }' delete="false" action_add="/assets/frontend/pages/vacancy.php">
 			{if $project_id|default}
-				{query_vacancies select="*" from="$tab_vacancies" orderby="id" where="project_id" project_id="$project_id"}
+			{query_vacancies select="*" from="$tab_vacancies" orderby="id" where="project_id" project_id="$project_id"}
 			{/if}
 		</cstm-container>
 	</div>

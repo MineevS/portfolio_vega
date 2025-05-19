@@ -1,8 +1,8 @@
 <?php
 	session_start(); // Продлеваем сессию, запущенную из `action.php`
 
-	error_reporting(E_ALL);                                                     // For Debug ERROR:
-    ini_set('display_errors', 'On'); 
+	//error_reporting(E_ALL);                                                     // For Debug ERROR:
+    //ini_set('display_errors', 'On'); 
 
     $root = $_SERVER['DOCUMENT_ROOT'];
 

@@ -40,7 +40,9 @@
 		<cstm-container class="projects" article="Участие в проектах">
 			<div name="projects" class="projects"> <!-- Для отделения от заголовка (limit="3" offset="0") -->
 				{query_projects for="profile" select="*" from="$tab_projects" orderby="id" where="author" author="$id_author"}
-				{query_properties_add for="projects"}
+				{if $access|default}
+					{query_properties_add for="projects"}
+				{/if}
 			</div>
 		</cstm-container>
 	</div>
